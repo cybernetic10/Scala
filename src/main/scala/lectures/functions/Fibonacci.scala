@@ -44,7 +44,6 @@ object Fibonacci2 extends App {
     else fibsImpl(num: Int, Array(1, 1, 2))(num - 1)
 
   private def fibsImpl(num: Int, acc: Array[Int]): Array[Int] = {
-    MatrixType
     var localArray: Array[Int] = acc
     for( i <- 3 to num ) {
       val newValue = localArray(i-2) + localArray(i-1)
