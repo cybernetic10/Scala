@@ -63,10 +63,10 @@ object CurriedComputation extends App with Data {
   */
 object FunctionalComputation extends App with Data {
 
-  def functionalComputation(filterData: String): (Array[String]) => Array[String] = {
-    val filterArray = filterData.split(" ")
+  def functionalComputation(filterData: String): (Array[String]) => Array[String] = ???//{
+    //val filterArray = filterData.split(" ")
     // КАК ЗДЕСЬ ДОБРАТЬСЯ ДО ПАРАМЕТРА ТИПА ARRAY[STRING]?
-  }
+  //}
 
   val filterApplied = functionalComputation(filterData)
 

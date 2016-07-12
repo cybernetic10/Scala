@@ -32,11 +32,25 @@ object SQLAPI extends App {
 
   }
 
-  private def logParamter[T](prm: T): T  = ???
+  private def logParamter(prm: String): String  = {println(prm); prm}
 
   val connection = (resource: String) => Connection(resource)
 
-  def execute(resource: String, sql: String): String = ???
+  def execute(resource: String, sql: String): String = {
+
+    logParamter( ( ( logParamter _ andThen connection ) _ andThen openConnection )(resource)(sql) )
+
+    //val res1 = logParamter( resource )
+    //val conn = connection( res1 )
+    //val openConn = conn.open()
+    //val res2 = openConn.execute(sql)
+    //val res3 =logParamter( res2 )
+
+    //val step0 = connection compose logParamter
+//    val step1 = logParamter _ andThen connection
+//    val conn = step1( resource )
+//    (conn.execute andThen logParamter)
+  }
 
 
   def openConnection(connection: Connection): (String) => String =
