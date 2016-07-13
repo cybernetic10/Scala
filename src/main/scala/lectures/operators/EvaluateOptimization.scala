@@ -1,6 +1,8 @@
 package lectures.operators
 
-import lectures.functions.Data
+import lectures.functions.{Computation, Data}
+import lectures.functions.CurriedComputation
+import lectures.functions.FunctionalComputation
 
 /**
   * В задачке из lectures.functions.Computations, мы реализовали
@@ -19,27 +21,32 @@ object EvaluateOptimization extends App with Data {
 
 
   // ВЫПОЛНИТЬ В ЦИКЛЕ  ОТ 1 ДО 100 Computation.computation(
-  //    for(??? <- ???) {
-  //    print("elapsed time in Computation.computation" + (System.currentTimeMillis() - startTimestamp))
-  //   }
+      for(i <- 1 to 100) {
+        Computation.computation( Computation.filterData, Computation.dataArray )
+      }
+      print("elapsed time " + (System.currentTimeMillis() - startTimestamp))
 
   // ВЫПОЛНИТЬ В ЦИКЛЕ  ОТ 1 ДО 100 CurriedComputation.partiallyAppliedCurriedFunction(
-  //    for(??? <- ???) {
-  //     ???
-  //    print("elapsed time " + (System.currentTimeMillis() - startTimestamp))
-  //   }
+  val startTime2 = System.currentTimeMillis()
+  for(i <- 1 to 100) {
+    CurriedComputation.curriedComputation( Computation.filterData)(Computation.dataArray)
+  }
+  val curriedWorkTime = (System.currentTimeMillis() - startTime2)
+  print("elapsed time " + curriedWorkTime)
 
   // ВЫПОЛНИТЬ В ЦИКЛЕ  ОТ 1 ДО 100 FunctionalComputation.filterApplied
-  //    for(??? <- ???) {
-  //     ???
-  //    print("elapsed time " + (System.currentTimeMillis() - startTimestamp))
-  //   }
+  val startTime3 = System.currentTimeMillis()
+  for(i <- 1 to 100) {
+    FunctionalComputation.functionalComputation( Computation.filterData)(Computation.dataArray)
+  }
+  val functionalWorkTime = (System.currentTimeMillis() - startTime2)
+  print("elapsed time " + (System.currentTimeMillis() - startTime2))
 
   // ВЫВЕСТИ РАЗНИЦУ В ПРОДОЛЖИТЕЛЬНОСТИ ВЫПОЛНЕНИЯ МЕЖДУ КАРРИРОВАННОЙ ВЕРСИЕЙ
   // И ФУНКЦИОНАЛЬНОЙ
 
-  //  val diff = ???
+  val diff = functionalWorkTime - curriedWorkTime
 
-  ///  print(s"Difference is about $diff milliseconds")
+  print(s"Difference is about $diff milliseconds")
 }
 

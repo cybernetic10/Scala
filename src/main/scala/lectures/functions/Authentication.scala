@@ -30,7 +30,10 @@ object Authentication extends App {
 
   import AuthenticationData._
 
-// val authByCard: PartialFunction[???, ???] = ???
+  val authByCard: PartialFunction[User, Boolean] = ???//{
+    //def apply(user: CardUser) =
+   // def isDefinedAt(user: CardUser) = case CardUser
+  //}
 
  //val authByLP: PartialFunction[???, ???] = ???
 

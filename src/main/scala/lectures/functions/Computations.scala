@@ -42,12 +42,12 @@ object CurriedComputation extends App with Data {
 
   def curriedComputation(filterData: String)(dataProducer: Array[String]): Array[String] = {
     //EMULATE HEAVY LOAD
-    Thread.sleep(1000)
+    Thread.sleep(10)
     //PRODUCE WORDS ARRAY FROM A STRING
     val filterArray = filterData.split(" ")
 
     //EMULATE HEAVY LOAD
-    Thread.sleep(1000)
+    Thread.sleep(100)
     // LEAVE ONLY EQUAL WORDS IN BOTH ARRAYS
     dataProducer.filter(dataItem => filterArray.contains(dataItem))
   }
@@ -63,10 +63,17 @@ object CurriedComputation extends App with Data {
   */
 object FunctionalComputation extends App with Data {
 
-  def functionalComputation(filterData: String): (Array[String]) => Array[String] = ???//{
-    //val filterArray = filterData.split(" ")
+  def functionalComputation(filterData: String): (Array[String]) => Array[String] = {
+
+    Thread.sleep(10)
+    val filterArray = filterData.split(" ")
     // КАК ЗДЕСЬ ДОБРАТЬСЯ ДО ПАРАМЕТРА ТИПА ARRAY[STRING]?
-  //}
+
+    (dataProducer: Array[String]) => {
+      Thread.sleep(100)
+      dataProducer.filter(dataItem => filterArray.contains(dataItem))
+    }
+  }
 
   val filterApplied = functionalComputation(filterData)
 
