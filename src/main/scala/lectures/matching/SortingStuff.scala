@@ -80,6 +80,7 @@ object SortingStuff extends App {
 			case head :: tail =>
 				val newBox = putStuffInRightBox(head, stuffBox)
 				sort(tail, newBox)
+			case _ => stuffBox
 		}
 	}
 
