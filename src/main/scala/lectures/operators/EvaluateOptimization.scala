@@ -24,7 +24,7 @@ object EvaluateOptimization extends App with Data {
       for(i <- 1 to 100) {
         Computation.computation( Computation.filterData, Computation.dataArray )
       }
-      print("elapsed time " + (System.currentTimeMillis() - startTimestamp))
+      println("elapsed time " + (System.currentTimeMillis() - startTimestamp))
 
   // ВЫПОЛНИТЬ В ЦИКЛЕ  ОТ 1 ДО 100 CurriedComputation.partiallyAppliedCurriedFunction(
   val startTime2 = System.currentTimeMillis()
@@ -32,21 +32,21 @@ object EvaluateOptimization extends App with Data {
     CurriedComputation.curriedComputation( Computation.filterData)(Computation.dataArray)
   }
   val curriedWorkTime = (System.currentTimeMillis() - startTime2)
-  print("elapsed time " + curriedWorkTime)
+  println("elapsed time " + curriedWorkTime)
 
   // ВЫПОЛНИТЬ В ЦИКЛЕ  ОТ 1 ДО 100 FunctionalComputation.filterApplied
   val startTime3 = System.currentTimeMillis()
   for(i <- 1 to 100) {
     FunctionalComputation.functionalComputation( Computation.filterData)(Computation.dataArray)
   }
-  val functionalWorkTime = (System.currentTimeMillis() - startTime2)
-  print("elapsed time " + (System.currentTimeMillis() - startTime2))
+  val functionalWorkTime = (System.currentTimeMillis() - startTime3)
+  println("elapsed time " + (System.currentTimeMillis() - startTime3))
 
   // ВЫВЕСТИ РАЗНИЦУ В ПРОДОЛЖИТЕЛЬНОСТИ ВЫПОЛНЕНИЯ МЕЖДУ КАРРИРОВАННОЙ ВЕРСИЕЙ
   // И ФУНКЦИОНАЛЬНОЙ
 
   val diff = functionalWorkTime - curriedWorkTime
 
-  print(s"Difference is about $diff milliseconds")
+  println(s"Difference is about $diff milliseconds")
 }
 

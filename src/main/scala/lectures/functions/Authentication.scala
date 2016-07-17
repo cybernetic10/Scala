@@ -28,19 +28,28 @@ import scala.util.Random
   */
 object Authentication extends App {
 
-  import AuthenticationData._
+	import AuthenticationData._
 
-  val authByCard: PartialFunction[User, Boolean] = ???//{
-    //def apply(user: CardUser) =
-   // def isDefinedAt(user: CardUser) = case CardUser
-  //}
+	val authByCard: PartialFunction[CardUser, User] = {
+		case u: CardUser if (AuthenticationData.registeredCards.contains(u.credentials)) => u
+	}
 
- //val authByLP: PartialFunction[???, ???] = ???
+	val authByLP: PartialFunction[LPUser, User] = {
+		case u: LPUser if (AuthenticationData.registeredLoginAndPassword.contains(u.credentials)) => u
+	}
 
-  val authenticated: List[Option[User]] = for (user <- testUsers) yield {
-    ???
-  }
+	val authenticated: List[Option[User]] = {
+		val authByCardLifted = authByCard.lift
+		val authByLPLifted = authByLP.lift
+		for (user <- testUsers) yield {
+			user match {
+				case u: CardUser => authByCardLifted(u)
+				case u: LPUser => authByLPLifted(u)
+				case _ => None
+			}
+		}
+	}
 
- authenticated.flatten foreach println
+	authenticated.flatten foreach println
 
 }

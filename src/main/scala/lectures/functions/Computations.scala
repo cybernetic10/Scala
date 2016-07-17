@@ -75,9 +75,7 @@ object FunctionalComputation extends App with Data {
     }
   }
 
-  val filterApplied = functionalComputation(filterData)
-
-  val result = filterApplied(dataArray)
+  val result = functionalComputation(filterData)(dataArray)
   result.foreach(print)
 }
 
