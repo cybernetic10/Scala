@@ -1,5 +1,7 @@
 package lectures.matching
 
+import lectures.matching.SortingStuff.Knife
+
 /**
   * Раскладывание вещей по коробкам
   *
@@ -104,10 +106,17 @@ object SortingStuff extends App {
 
 	// Поиск ножа
 	def findMyKnife(stuffBox: StuffBox): Boolean =
-		stuffBox match {
-			case junk@stuffBox.junk if junk.contains(Knife) => true
-			case _ => false
-		}
+		if ( stuffBox.junk.contains( Knife) ) true else false
+//		for( junk <- stuffBox.junk ) {
+//			if( junk == Knife ) true
+//			junk match {
+//				case Knife =>
+//			}
+//		}
+//		stuffBox match {
+//			case junk@StuffBox if junk.junk.contains(Knife) => true
+//			case _ => false
+//		}
 
 	// Сортируем списко вещей и ищем в ней нож
 	val knifeIsInJunk = (sortJunk _ andThen findMyKnife) (stuff)

@@ -28,16 +28,18 @@ object EvaluateOptimization extends App with Data {
 
   // ВЫПОЛНИТЬ В ЦИКЛЕ  ОТ 1 ДО 100 CurriedComputation.partiallyAppliedCurriedFunction(
   val startTime2 = System.currentTimeMillis()
+  var curried = CurriedComputation.curriedComputation( Computation.filterData) _
   for(i <- 1 to 100) {
-    CurriedComputation.curriedComputation( Computation.filterData)(Computation.dataArray)
+    curried(Computation.dataArray)
   }
   val curriedWorkTime = (System.currentTimeMillis() - startTime2)
   println("elapsed time " + curriedWorkTime)
 
   // ВЫПОЛНИТЬ В ЦИКЛЕ  ОТ 1 ДО 100 FunctionalComputation.filterApplied
   val startTime3 = System.currentTimeMillis()
+  val part1 = FunctionalComputation.functionalComputation( Computation.filterData)
   for(i <- 1 to 100) {
-    FunctionalComputation.functionalComputation( Computation.filterData)(Computation.dataArray)
+    part1(Computation.dataArray)
   }
   val functionalWorkTime = (System.currentTimeMillis() - startTime3)
   println("elapsed time " + (System.currentTimeMillis() - startTime3))

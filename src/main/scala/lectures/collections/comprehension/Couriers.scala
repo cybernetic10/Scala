@@ -24,9 +24,10 @@ case class Traffic(degree: Double)
 
 object Courier {
   def couriers(courierCount: Int): List[Courier] =
-    (for (i <- 1 to courierCount) yield {
-      Courier(i)
-    }).toList
+    if( courierCount == 0 )
+      List[Courier]()
+    else
+      couriers( courierCount - 1 ) :+ Courier( courierCount )
 }
 
 case class Courier(index: Int) {
@@ -35,9 +36,10 @@ case class Courier(index: Int) {
 
 object Address {
   def addresses(addressesCount: Int): List[Address] =
-    (for (i <- 1 to addressesCount) yield {
-      Address(s"$i$i$i")
-    }).toList
+    if( addressesCount == 0 )
+      List[Address]()
+    else
+      addresses( addressesCount - 1 ) :+ Address( s"$addressesCount$addressesCount$addressesCount" )
 }
 
 case class Address(postIndex: String)
@@ -69,9 +71,7 @@ object CouriersWithComprehension extends App {
   def traffic(): Traffic = new Traffic(Math.random() * 10)
 
   def printServedAddresses(addresses: List[Address], couriers: List[Courier]) =
-    for (a <- serveAddresses(addresses, couriers)) {
-      println(a.postIndex)
-    }
+    serveAddresses( addresses, couriers).foreach( (addr: Address) => println(addr.postIndex) )
 
   printServedAddresses(addrs, cours)
 

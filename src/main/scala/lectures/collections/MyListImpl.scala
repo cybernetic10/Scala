@@ -5,8 +5,8 @@ package lectures.collections
   *
   * Вы приняли решение, что будет достаточно реализовать 4 метода
   * * * * * def flatMap(f: (Int => MyList)) -  реализуете на основе соответствующего метода из List
-  * * * * * метод map(f: (Int) => Int) - с помощью только что полученного метода flatMap
-  * * * * * filter(???) - через метод map
+  * * * * * метод map(f: (Int) => Int) - с помощью только что полученного метода flatMap класса MyList
+  * * * * * filter(???) - через метод map или flatMap класса MyList
   * * * * * foldLeft(acc: Int)(???) - через декомпозицию на head и tail
   *
   * Для того, что бы выполнить задание,
@@ -19,10 +19,12 @@ object MyListImpl extends App {
 
   case class MyList(data: List[Int]) {
 
-//    def flatMap(f: (Int => MyList)) =
-//      MyList(data.flatMap(inp => f(inp).data))
-//
-//    def map(f: ???) = ???
+    def flatMap(f: (Int => MyList)) =
+      MyList(data.flatMap(inp => f(inp).data))
+
+    def map(f: (Int) => Int) = {
+      data.map( el => f(el) )
+    }
 //
 //    def foldLeft(acc: Int)(???): Int = ???
 //
